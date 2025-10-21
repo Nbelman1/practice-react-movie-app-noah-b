@@ -4,23 +4,31 @@ import MovieSelector from './MovieSelector'
 
 function App() {
 
+  const [ currentGenre, setCurrentGenre ] = useState('default');
+
   return (
     <>
       <div>
-        <select id="genre" label="Choose a genre">
+        <select id="genreSelector" name="genre">
           <option value="default">Select a genre</option>
           <option value="action">Action</option>
           <option value="comedy">Comedy</option>
           <option value="horror">Horror</option>
         </select>
+
+        <br></br>
+        <br></br>
+
         <button name="Fetch Button" value="fetch-button" 
-        onClick={()=> setCurrentMovie(document.getElementById("genre").value)}>Fetch Movies!!
+          onClick={()=> setCurrentGenre(document.querySelector('select').value)}>
+          Fetch Movies!!
         </button>
-        {/* TODO: fix bug where genre is not defined */}
-        <MovieSelector genre={genre}/>
+
+        <MovieSelector genre={currentGenre} />
+
       </div>
     </>
   )
 }
 
-export default App
+export default App;
