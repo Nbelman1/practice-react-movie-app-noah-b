@@ -9,6 +9,12 @@ button {
   margin-top: 30px;
 }
 
-.is-loading {
-  cursor: wait;
+/* "*" applies style to all child elements  */
+.is-loading * {
+  cursor: wait !important;
+  /* !important overrides other styles */
+}
+
+ul {
+  list-style-position: inside;
 }
