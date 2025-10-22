@@ -1,53 +1,55 @@
 import { useState } from "react";
 
-const MovieSelector = (currentGenre) => {
+// test data
+const movies = [
+    {
+        movieName: "Fast and Furious",
+        genre: "action"
+    },
+    {
+        movieName: "Mission: Impossible",
+        genre: "action"
+    },
+    {
+        movieName: "Step Brothers",
+        genre: "comedy"
+    },
+    {
+        movieName: "Horrible Bosses",
+        genre: "comedy"
+    },
+    {
+        movieName: "Shawshank Redemption",
+        genre: "horror"
+    },
+    {
+        movieName: "Oddity",
+        genre: "horror"
+    }
+];
 
-    // test data
-    const movies = [
-        {
-            movieName: "Fast and Furious",
-            genre: "action"
-        },
-        {
-            movieName: "Mission: Impossible",
-            genre: "action"
-        },
-        {
-            movieName: "Step Brothers",
-            genre: "comedy"
-        },
-        {
-            movieName: "Horrible Bosses",
-            genre: "comedy"
-        },
-        {
-            movieName: "Shawshank Redemption",
-            genre: "horror"
-        },
-        {
-            movieName: "Oddity",
-            genre: "horror"
-        }
-    ];
-
-    const filterMovies = (currentGenre) => {
-        return movies.filter((movie) => movie.genre === currentGenre);
+const MovieSelector = ({genre}) => {
+    
+    function filterMovies(genre) {
+        return movies.filter(movie => movie.genre === genre);
     };
 
-    function renderMovies(currentGenre) {
-        // TODO: debug filterMovies logging empty object
-        console.log(currentGenre);
-        console.log(filterMovies(currentGenre));
-
-        // TODO: debug conditionals not activating - maybe useState is to blame?
-        if (currentGenre === 'default') {
-            return <p>Please select a genre to display movies.</p>;
+    function renderMovies(genre) {
+        if (genre === 'default') {
+            return
+        }
+        if (genre === 'select-a-genre') {
+            return <div>
+                <p>Error: no genre selected.</p>
+                <p>Select a genre to display movies.</p>
+            </div>
         } else {
             return (
                 <div>
-                    <h2>Movies</h2>
+                    {/* capitalizes first letter of genre name */}
+                    <h2>{genre.charAt(0).toUpperCase() + genre.slice(1)} Movies</h2>
                     <ul>
-                        {filterMovies(currentGenre).map((movie) => 
+                        {filterMovies(genre).map((movie) => 
                         <li key={movie.movieName}>{movie.movieName}</li>)}
                     </ul>
                 </div>
@@ -58,7 +60,7 @@ const MovieSelector = (currentGenre) => {
 
     return (
         <div>
-            {renderMovies(currentGenre)}
+            {renderMovies(genre)}
         </div>
     );
 
