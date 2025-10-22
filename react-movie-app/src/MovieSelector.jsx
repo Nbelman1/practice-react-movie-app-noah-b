@@ -1,6 +1,4 @@
-import { useState } from "react";
-
-// test data
+// mock data
 const movies = [
     {
         movieName: "Fast and Furious",
@@ -29,7 +27,7 @@ const movies = [
 ];
 
 const MovieSelector = ({genre}) => {
-    
+
     function filterMovies(genre) {
         return movies.filter(movie => movie.genre === genre);
     };
